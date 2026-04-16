@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antigravity Math – Worksheet Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header>
+  <span class="header-emoji">🚀</span>
+  <h1>Antigravity Math</h1>
+  <p>Worksheet Generator for Grade 2 &nbsp;✏️</p>
+</header>
+
+<main>
+
+  <!-- Pages -->
+  <div class="section-label">Worksheet Settings</div>
+  <div class="pages-card">
+    <div class="pages-icon">📄</div>
+    <div class="pages-info">
+      <h2>Number of Pages</h2>
+      <p>Each page has 100 math problems</p>
+    </div>
+    <div class="pages-control">
+      <button class="pages-btn" id="pagesDown">−</button>
+      <span id="pages-display">2</span>
+      <button class="pages-btn" id="pagesUp">+</button>
+    </div>
+  </div>
+
+  <!-- Operation Cards -->
+  <div class="section-label">Configure Operations</div>
+  <div class="ops-grid">
+
+    <!-- Addition -->
+    <div class="op-card add">
+      <div class="op-header">
+        <div class="op-badge">+</div>
+        <div>
+          <div class="op-title">Addition</div>
+          <div class="op-sub">A + B = ?</div>
+        </div>
+      </div>
+      <div class="range-row">
+        <div class="range-label-row">
+          <span class="range-label">Value of A (max)</span>
+          <span class="range-val" id="add-a-val">50</span>
+        </div>
+        <input type="range" id="add-a" min="1" max="100" value="50">
+      </div>
+      <div class="range-row">
+        <div class="range-label-row">
+          <span class="range-label">Value of B (max)</span>
+          <span class="range-val" id="add-b-val">50</span>
+        </div>
+        <input type="range" id="add-b" min="1" max="100" value="50">
+      </div>
+    </div>
+
+    <!-- Subtraction -->
+    <div class="op-card sub">
+      <div class="op-header">
+        <div class="op-badge">−</div>
+        <div>
+          <div class="op-title">Subtraction</div>
+          <div class="op-sub">A − B = ? &nbsp;(A &gt; B always)</div>
+        </div>
+      </div>
+      <div class="range-row">
+        <div class="range-label-row">
+          <span class="range-label">Value of A (max)</span>
+          <span class="range-val" id="sub-a-val">80</span>
+        </div>
+        <input type="range" id="sub-a" min="2" max="100" value="80">
+      </div>
+      <div class="range-row">
+        <div class="range-label-row">
+          <span class="range-label">Value of B (max)</span>
+          <span class="range-val" id="sub-b-val">40</span>
+        </div>
+        <input type="range" id="sub-b" min="1" max="99" value="40">
+      </div>
+      <div class="sub-note">⚑ B is always kept smaller than A</div>
+    </div>
+
+    <!-- Multiplication -->
+    <div class="op-card mul">
+      <div class="op-header">
+        <div class="op-badge">×</div>
+        <div>
+          <div class="op-title">Multiplication</div>
+          <div class="op-sub">A × 10 = ?</div>
+        </div>
+      </div>
+      <div class="range-row">
+        <div class="range-label-row">
+          <span class="range-label">Value of A (max)</span>
+          <span class="range-val" id="mul-a-val">10</span>
+        </div>
+        <input type="range" id="mul-a" min="1" max="10" value="10">
+      </div>
+      <div class="fixed-info">
+        <span>🔒</span>
+        <span>B is always <strong>10</strong> — fixed for all problems</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Preview -->
+  <div class="preview-card">
+    <h3>🔍 Sample Preview</h3>
+    <div class="preview-strip" id="preview-strip"></div>
+  </div>
+
+  <!-- Generate -->
+  <div class="generate-wrap">
+    <button id="generateBtn">
+      <span>📥</span>
+      <span>Generate PDF</span>
+    </button>
+  </div>
+
+</main>
+
+<div id="toast">✅ PDF Downloaded!</div>
+
+<script type="module" src="/main.js"></script>
+</body>
+</html>
