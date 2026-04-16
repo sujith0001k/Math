@@ -5,7 +5,8 @@ let pages = 2;
 const cfg = {
   addA: 50, addB: 50,
   subA: 80, subB: 40,
-  mulA: 10
+  mulA: 10,
+  activeOps: { add: true, sub: true, mul: true }
 };
 
 /* ─── PAGES CONTROL ─── */
@@ -24,6 +25,28 @@ bindRange('add-b', 'addB', 'add-b-val');
 bindRange('sub-a', 'subA', 'sub-a-val');
 bindRange('sub-b', 'subB', 'sub-b-val');
 bindRange('mul-a', 'mulA', 'mul-a-val');
+
+/* ─── CATEGORY TOGGLES ─── */
+function bindToggle(id, type, cardId) {
+  const el = document.getElementById(id);
+  const card = document.getElementById(cardId);
+  if (!el || !card) return;
+  el.onchange = () => {
+    cfg.activeOps[type] = el.checked;
+    card.classList.toggle('disabled', !el.checked);
+    updateGenerateButton();
+    refreshPreview();
+  };
+}
+bindToggle('check-add', 'add', 'card-add');
+bindToggle('check-sub', 'sub', 'card-sub');
+bindToggle('check-mul', 'mul', 'card-mul');
+
+function updateGenerateButton() {
+    const anyActive = Object.values(cfg.activeOps).some(v => v);
+    const btn = document.getElementById('generateBtn');
+    if (btn) btn.disabled = !anyActive;
+}
 
 /* ─── PROBLEM GENERATORS ─── */
 function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
@@ -44,14 +67,22 @@ function genSubtraction() {
 
 function genMultiplication() {
   const a = randInt(1, cfg.mulA);
-  return `${a} × 10`;
+  const b = randInt(2, 10);
+  return `${a} × ${b}`;
 }
 
 function genProblem() {
-  const r = Math.random();
-  if (r < 0.34) return { expr: genAddition(),      type: 'add' };
-  if (r < 0.67) return { expr: genSubtraction(),   type: 'sub' };
-  return            { expr: genMultiplication(),   type: 'mul' };
+  const activeTypes = Object.entries(cfg.activeOps)
+    .filter(([_, active]) => active)
+    .map(([type, _]) => type);
+  
+  if (activeTypes.length === 0) return { expr: '?', type: 'none' };
+  
+  const type = activeTypes[Math.floor(Math.random() * activeTypes.length)];
+  
+  if (type === 'add') return { expr: genAddition(),      type: 'add' };
+  if (type === 'sub') return { expr: genSubtraction(),   type: 'sub' };
+  return                  { expr: genMultiplication(),   type: 'mul' };
 }
 
 /* ─── PREVIEW ─── */

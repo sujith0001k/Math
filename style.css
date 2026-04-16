@@ -137,7 +137,15 @@ main {
   box-shadow: var(--shadow);
   padding: 22px 22px 20px;
   border-top: 5px solid transparent;
-  transition: box-shadow 0.2s;
+  transition: all 0.3s ease;
+}
+.op-card.disabled {
+  opacity: 0.5;
+  filter: grayscale(0.8);
+  pointer-events: none;
+}
+.op-card.disabled .toggle-wrap {
+    pointer-events: auto; /* Allow toggling back on */
 }
 .op-card:hover { box-shadow: 0 8px 30px rgba(26,35,126,0.14); }
 .op-card.add  { border-top-color: #4CAF50; }
@@ -161,6 +169,47 @@ main {
 .add .op-badge  { background: #E8F5E9; color: #2E7D32; }
 .sub .op-badge  { background: #FFEBEE; color: #C62828; }
 .mul .op-badge  { background: #FFF3E0; color: #E65100; }
+
+/* ── TOGGLE SWITCH ── */
+.toggle-wrap {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  margin-right: 8px;
+}
+.toggle-wrap input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 20px;
+}
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; width: 18px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .toggle-slider {
+  background-color: #2196F3;
+}
+.add input:checked + .toggle-slider { background-color: #4CAF50; }
+.sub input:checked + .toggle-slider { background-color: #F44336; }
+.mul input:checked + .toggle-slider { background-color: #FF9800; }
+
+input:checked + .toggle-slider:before {
+  transform: translateX(20px);
+}
 
 .op-title { font-size: 17px; font-weight: 800; color: var(--text); }
 .op-sub   { font-size: 12px; color: var(--muted); font-weight: 600; margin-top: 1px; }

@@ -38,8 +38,12 @@
   <div class="ops-grid">
 
     <!-- Addition -->
-    <div class="op-card add">
+    <div class="op-card add" id="card-add">
       <div class="op-header">
+        <label class="toggle-wrap">
+            <input type="checkbox" id="check-add" checked>
+            <span class="toggle-slider"></span>
+        </label>
         <div class="op-badge">+</div>
         <div>
           <div class="op-title">Addition</div>
@@ -63,8 +67,12 @@
     </div>
 
     <!-- Subtraction -->
-    <div class="op-card sub">
+    <div class="op-card sub" id="card-sub">
       <div class="op-header">
+        <label class="toggle-wrap">
+            <input type="checkbox" id="check-sub" checked>
+            <span class="toggle-slider"></span>
+        </label>
         <div class="op-badge">−</div>
         <div>
           <div class="op-title">Subtraction</div>
@@ -89,12 +97,16 @@
     </div>
 
     <!-- Multiplication -->
-    <div class="op-card mul">
+    <div class="op-card mul" id="card-mul">
       <div class="op-header">
+        <label class="toggle-wrap">
+            <input type="checkbox" id="check-mul" checked>
+            <span class="toggle-slider"></span>
+        </label>
         <div class="op-badge">×</div>
         <div>
           <div class="op-title">Multiplication</div>
-          <div class="op-sub">A × 10 = ?</div>
+          <div class="op-sub">A × B = ?</div>
         </div>
       </div>
       <div class="range-row">
@@ -105,8 +117,8 @@
         <input type="range" id="mul-a" min="1" max="10" value="10">
       </div>
       <div class="fixed-info">
-        <span>🔒</span>
-        <span>B is always <strong>10</strong> — fixed for all problems</span>
+        <span>🎲</span>
+        <span>B is randomized between <strong>2 and 10</strong> for each problem</span>
       </div>
     </div>
 
